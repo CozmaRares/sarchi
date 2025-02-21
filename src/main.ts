@@ -27,8 +27,7 @@ function redirect() {
 
   const searchUrl = selectedBang.u.replace("%s", query);
 
-  //window.location.replace(searchUrl);
-  console.log(searchUrl);
+  window.location.replace(searchUrl);
 }
 
 redirect();
