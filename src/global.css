@@ -1,68 +1,50 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"); */
-
-/* Font fallback that closely matches Inter metrics */
-@font-face {
-  font-family: "Inter Fallback";
-  size-adjust: 107%;
-  ascent-override: 90%;
-  src: local("Arial");
-}
-
-:root {
-  font-family:
-    Inter,
-    "Inter Fallback",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
 body {
-  height: 100%;
-  width: 100%;
+  background-color: #fbfbfb;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  gap: 2rem;
 }
 
-body {
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 16px;
-  color: #1a1a1a;
+body > * {
+  max-width: 500px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.5;
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
 }
 
-a {
-  color: #444444;
+#container {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1em;
+  color: black;
 }
-a:hover {
-  color: #888888;
+
+#url {
+  padding: 0.25rem 1rem;
+  background-color: #f0f0f0;
+  border: 1px solid #a0a0a0;
+  flex: 1;
+  text-align: left;
+  border-radius: 0.25rem;
 }
 
 button {
@@ -70,81 +52,23 @@ button {
   border: none;
   background: none;
   cursor: pointer;
-}
-
-input,
-textarea {
-  font: inherit;
-}
-
-/* Add these new styles */
-.url-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-/* Add this new style */
-.content-container {
-  max-width: 36rem;
-  text-align: center;
-  padding: 0 8px;
-}
-
-/* Update url-input width to be 100% since container will control max width */
-.url-input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  background: #f5f5f5;
-}
-
-.copy-button {
-  padding: 8px;
-  color: #666;
-  border-radius: 4px;
-  transition: all 0.2s;
+  padding: 0.25rem;
+  display: block;
+  border-radius: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s;
 }
 
-.copy-button:hover {
-  background: #f0f0f0;
+button:hover {
+  background-color: #dddddd;
 }
 
-.copy-button:active {
-  background: #e5e5e5;
-}
-
-.copy-button img {
-  width: 20px;
-  height: 20px;
-}
-
-.copy-button.copied {
-  background: #28a745;
-}
-
-/* Add footer styles */
-.footer {
-  position: fixed;
-  bottom: 16px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.footer a {
-  color: #666;
-  text-decoration: none;
+a {
   font-weight: 500;
+  color: #333333;
 }
-
-.footer a:hover {
-  color: #333;
+a:hover {
+  color: #555555;
 }

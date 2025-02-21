@@ -2,42 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/search.svg" />
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <script
-      defer
-      data-domain="unduck.link"
-      src="https://plausible.io/js/script.js"
-    ></script>
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unduck</title>
-    <meta
-      name="description"
-      content="A better default search engine (with bangs!)"
-    />
+    <title>Sărchi</title>
   </head>
-  <body style="background-color: transparent">
-    <div id="app"></div>
+  <body>
+    <div>
+      <h1>Sărchi</h1>
+      <p>
+        <a href="https://duckduckgo.com/">DuckDuckGo</a>'s bang redirects are
+        cool. I took <a href="https://x.com/theo">Theo</a>'s client side remake
+        (<a href="">und*uck</a>) and made it work with my own bangs.
+      </p>
+    </div>
+    <div>
+      <p>Add this url as a custom search engine in your browser:</p>
+      <div id="container">
+        <p id="url">https://sarchi.raru.dev?q=%s</p>
+        <button id="copy">
+          <img src="/clipboard.svg" alt="Copy" />
+        </button>
+      </div>
+    </div>
+    <a href="#">
+      See available bangs
+      <span>↗</span>
+    </a>
     <script type="module" src="/src/main.ts"></script>
   </body>
+
+  <script>
+    {
+      const copy = document.getElementById("copy");
+      const copyIcon = document.querySelector("#copy > img");
+      const url = document.getElementById("url").innerText;
+
+      copy.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(url);
+        copyIcon.src = "/clipboard-check.svg";
+
+        setTimeout(() => {
+          copyIcon.src = "/clipboard.svg";
+        }, 2000);
+      });
+    }
+  </script>
 </html>
