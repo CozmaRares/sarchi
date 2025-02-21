@@ -2,49 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/search.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sărchi</title>
   </head>
   <body>
-    <div>
-      <h1>Sărchi</h1>
-      <p>
-        <a href="https://duckduckgo.com/">DuckDuckGo</a>'s bang redirects are
-        cool. I took <a href="https://x.com/theo">Theo</a>'s client side remake
-        (<a href="">und*uck</a>) and made it work with my own bangs.
-      </p>
-    </div>
-    <div>
-      <p>Add this url as a custom search engine in your browser:</p>
-      <div id="container">
-        <p id="url">https://sarchi.raru.dev?q=%s</p>
-        <button id="copy">
-          <img src="/clipboard.svg" alt="Copy" />
-        </button>
-      </div>
-    </div>
-    <a href="#">
-      See available bangs
-      <span>↗</span>
-    </a>
+    <div id="app"/>
     <script type="module" src="/src/main.ts"></script>
   </body>
-
-  <script>
-    {
-      const copy = document.getElementById("copy");
-      const copyIcon = document.querySelector("#copy > img");
-      const url = document.getElementById("url").innerText;
-
-      copy.addEventListener("click", async () => {
-        await navigator.clipboard.writeText(url);
-        copyIcon.src = "/clipboard-check.svg";
-
-        setTimeout(() => {
-          copyIcon.src = "/clipboard.svg";
-        }, 2000);
-      });
-    }
-  </script>
 </html>
