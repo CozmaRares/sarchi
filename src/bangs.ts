@@ -28,8 +28,13 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
     u: "https://www.npmjs.com/search?q=%s",
   },
   rs: {
+    n: "Docs.rs Crates",
+    u: "https://docs.rs/%s",
+    k: true,
+  },
+  rss: {
     n: "Docs.rs",
-    u: "https://docs.rs/search?q=%s",
+    u: "https://docs.rs/releases/search?query=%s",
   },
   gh: {
     n: "GitHub Repo",
@@ -42,15 +47,15 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
   },
   tr: {
     n: "Google Translate (auto to English)",
-    u: "https://translate.google.com/#auto/en/%s",
+    u: "https://translate.google.com/?sl=auto&tl=en&text=%s&op=translate",
   },
   ter: {
     n: "Google Translate (English to Romanian)",
-    u: "https://translate.google.com/#en/ro/%s",
+    u: "https://translate.google.com/?sl=en&tl=ro&text=%s&op=translate",
   },
   tre: {
     n: "Google Translate (Romanian to English)",
-    u: "https://translate.google.com/#ro/en/%s",
+    u: "https://translate.google.com/?sl=ro&tl=en&text=%s&op=translate",
   },
   y: {
     n: "YouTube",
@@ -58,7 +63,7 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
   },
   ac: {
     n: "AC UTCN",
-    u: "https://ac.utcn.ro/%s.html",
+    u: "https://ac.utcluj.ro/%s.html",
     k: true,
   },
 };
