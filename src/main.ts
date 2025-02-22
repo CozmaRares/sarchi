@@ -49,8 +49,7 @@ function showBangs() {
 function redirect() {
   const url = new URL(window.location.href);
 
-  if (url.pathname === "/") return showHomePage();
-  else if (url.pathname === "/bangs") return showBangs();
+  if (url.pathname === "/bangs") return showBangs();
 
   let query = url.searchParams.get("q")?.trim() ?? "";
   if (!query) return showHomePage();
