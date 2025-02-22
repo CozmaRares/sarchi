@@ -66,5 +66,9 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
     u: "https://ac.utcluj.ro/%s.html",
     k: true,
   },
+  mal: {
+    n: "My Anime List",
+    u: "https://myanimelist.net/anime.php?q=%s",
+  },
 };
 export default bangs;

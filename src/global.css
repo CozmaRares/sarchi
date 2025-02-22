@@ -4,19 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: #fbfbfb;
-  text-align: center;
+.content-container {
+  background-color: #f3f4f6;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  max-height: 100vh;
   gap: 2rem;
 }
 
-body > * {
+.content-container > * {
   max-width: 500px;
 }
 
@@ -40,7 +37,7 @@ h1 {
 
 #url {
   padding: 0.25rem 1rem;
-  background-color: #f0f0f0;
+  background-color: white;
   border: 1px solid #a0a0a0;
   flex: 1;
   text-align: left;
