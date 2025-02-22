@@ -50,6 +50,7 @@ function redirect() {
   const url = new URL(window.location.href);
 
   if (url.pathname === "/bangs") return showBangs();
+  if (url.pathname !== "/") return;
 
   let query = url.searchParams.get("q")?.trim() ?? "";
   if (!query) return showHomePage();
