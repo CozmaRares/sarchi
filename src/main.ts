@@ -16,7 +16,7 @@ function showHomePage() {
     <div>
       <p>Add this url as a custom search engine in your browser:</p>
       <div id="container">
-        <p id="url">https://sarchi.raru.dev?q=%s</p>
+        <p id="url">https://sarchi.raru.dev/?q=%s</p>
         <button id="copy">
           <img src="/clipboard.svg" alt="Copy" />
         </button>
