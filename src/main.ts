@@ -11,7 +11,7 @@ function showHomePage() {
         <p>
           <a href="https://duckduckgo.com/">DuckDuckGo</a>'s bang redirects are
           cool. I took <a href="https://x.com/theo">Theo</a>'s client side remake
-          (<a href="">und*uck</a>) and made it work with my own bangs.
+          (<a href="https://unduck.link/">und*uck</a>) and made it work with my own bangs.
         </p>
       </div>
       <div>
