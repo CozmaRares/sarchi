@@ -70,5 +70,9 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
     n: "My Anime List",
     u: "https://myanimelist.net/anime.php?q=%s",
   },
+  can: {
+    n: "Can I Use",
+    u: "https://caniuse.com/?search=%s",
+  }
 };
 export default bangs;
