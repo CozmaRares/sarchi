@@ -46,7 +46,7 @@ function showHomePage() {
 
 function showBangs() {
   document.getElementById("app")!.innerHTML = `
-     <div class="content-container" style="padding: 1rem">
+     <div class="content-container">
        <h1>Bangs List</h1>
         <ul class="bang-list">
           ${Object.entries(bangs)
