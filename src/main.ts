@@ -46,35 +46,19 @@ function showHomePage() {
 
 function showBangs() {
   document.getElementById("app")!.innerHTML = `
-     <div class="content-container" style="padding-top: 1rem">
-       <h1 class="text-2xl font-bold mb-6 text-center">Bangs List</h1>
-        <ul style="list-style: none;">
+     <div class="content-container" style="padding: 1rem">
+       <h1>Bangs List</h1>
+        <ul class="bang-list">
           ${Object.entries(bangs)
             .map(
-              ([key, value], idx) =>
-                `<li style="
-                  border:1px solid #e4e4e7;
-                  border-radius: 0.5rem;
-                  padding: 1rem;
-                  background: white;
-                  font-size: 0.875rem;
-                  line-height: 1.25;
-                  color: #4b5563;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 0.25rem;
-                  ${idx != 0 ? "margin-top: 1rem;" : ""}
-                ">
-                    <div style="color: black; font-weight: 600; font-size: 1.125rem; line-height: 1.75">!${key}</div>
+              ([key, value]) =>
+                `<li>
+                    <div>!${key}</div>
                     <div>Name: ${value.n}</div>
                     <div style="word-break: break-all;">
                       URL: <span class="font-mono">${value.u}</span>
                     </div>
-                    ${
-                      value.k !== undefined
-                        ? `<div class="text-sm text-gray-600">Keep slashes: ${value.k ? "Yes" : "No"}</div>`
-                        : ""
-                    }
+                    ${!!value.k ? `<div>Keeps slashes in path</div>` : ""}
                 </li>`,
             )
             .join("")}

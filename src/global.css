@@ -69,3 +69,32 @@ a {
 a:hover {
   color: #555555;
 }
+
+ul {
+  list-style: none;
+}
+
+.bang-list li {
+  border: 2px solid #d4d4d7;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: white;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  color: #4b5563;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.bang-list li:first-child {
+  margin-top: 0;
+}
+
+.bang-list li > div:first-child {
+  color: black;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
