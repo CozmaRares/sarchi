@@ -7,10 +7,6 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
     n: "Google Images",
     u: "https://google.com/search?tbm=isch&q=%s&tbs=imgo:1",
   },
-  //lg: {
-  //  n: "Libgen",
-  //  u: "https://libgen.is/search.php?req=%s",
-  //},
   t3: {
     n: "T3 Chat",
     u: "https://www.t3.chat/new?q=%s",
@@ -73,6 +69,14 @@ const bangs: Readonly<Record<string, { n: string; u: string; k?: boolean }>> = {
   can: {
     n: "Can I Use",
     u: "https://caniuse.com/?search=%s",
-  }
+  },
+  z: {
+    n: "Z Library",
+    u: "https://z-library.rs/s/?q=%s",
+  },
+  ctp: {
+    n: "CTP Cluj",
+    u: "https://ctpcj.ro/index.php/ro/orare-linii/linii-urbane/linia-%s",
+  },
 };
 export default bangs;
