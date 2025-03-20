@@ -1,8 +1,6 @@
 import bangs from "./bangs";
 import "./global.css";
 
-const DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
-
 function showHomePage() {
   document.getElementById("app")!.innerHTML = `
     <div class="content-container" style="height: 100vh; text-align: center">
@@ -45,29 +43,34 @@ function showHomePage() {
 }
 
 function showBangs() {
+  const bangList =
+    Object.entries(bangs)
+      .map(
+        ([key, value]) =>
+          `<li>
+              <div>.${key}</div>
+              <div>Name: ${value.n}</div>
+              <div style="word-break: break-all;">
+                URL: <span class="font-mono">${value.u}</span>
+              </div>
+              ${!!value.k ? `<div>Keeps slashes in path</div>` : ""}
+          </li>`,
+      )
+      .join("")
+
   document.getElementById("app")!.innerHTML = `
      <div class="content-container">
        <h1>Bangs List</h1>
         <ul class="bang-list">
-          ${Object.entries(bangs)
-            .map(
-              ([key, value]) =>
-                `<li>
-                    <div>!${key}</div>
-                    <div>Name: ${value.n}</div>
-                    <div style="word-break: break-all;">
-                      URL: <span class="font-mono">${value.u}</span>
-                    </div>
-                    ${!!value.k ? `<div>Keeps slashes in path</div>` : ""}
-                </li>`,
-            )
-            .join("")}
+          ${bangList}
         </ul>
      </div>
   `;
 }
 
 function redirect() {
+  const DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
+
   const url = new URL(window.location.href);
 
   if (url.pathname === "/bangs") return showBangs();
@@ -77,7 +80,7 @@ function redirect() {
   if (!query) return showHomePage();
 
   // get first bang
-  const candidate = query.match(/!(\S+)/i)?.[1]?.toLowerCase();
+  const candidate = query.match(/\.(\S+)/i)?.[1]?.toLowerCase();
 
   const bang = (
     candidate && candidate in bangs ? candidate : DEFAULT_BANG
@@ -85,7 +88,7 @@ function redirect() {
   const selectedBang = bangs[bang];
 
   // remove bang
-  query = query.replace(/!\S+\s*/i, "").trim();
+  query = query.replace(/\.\S+\s*/i, "").trim();
   query = encodeURIComponent(query);
 
   // keep slashes
