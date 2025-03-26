@@ -10,10 +10,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.content-container > * {
+.content-container > *:not(a) {
+  min-width: min(500px, 100%);
   max-width: 500px;
   padding: 1rem;
 }
@@ -23,10 +24,14 @@ h1 {
   line-height: 1.5;
   font-size: 2.5rem;
   margin-bottom: 0.25rem;
+  text-align: center;
 }
 
-#container {
-  margin-top: 0.5rem;
+.home-page-container > p:first-child {
+  padding-bottom: 0.75rem;
+}
+
+#url-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -43,6 +48,7 @@ h1 {
   flex: 1;
   text-align: left;
   border-radius: 0.25rem;
+  font-size: 1rem;
 }
 
 button {
@@ -75,7 +81,28 @@ ul {
   list-style: none;
 }
 
-.bang-list li {
+#search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#search-input {
+  outline: none;
+  padding: 0.25rem 1rem;
+  background-color: white;
+  border: 1px solid #a0a0a0;
+  flex: 1;
+  text-align: left;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.dott-list {
+  width: 100%;
+}
+
+.dott-list li {
   border: 2px solid #d4d4d7;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -89,11 +116,7 @@ ul {
   margin-top: 1rem;
 }
 
-.bang-list li:first-child {
-  margin-top: 0;
-}
-
-.bang-list li > div:first-child {
+.dott-list li > div:first-child {
   color: black;
   font-weight: 600;
   font-size: 1.125rem;
