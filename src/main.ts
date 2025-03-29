@@ -42,7 +42,9 @@ function showHomePage() {
   const url = document.getElementById("url")!.innerText;
 
   const searchForm = document.getElementById("search-form")!;
-  const searchInput = document.getElementById("search-input") as HTMLInputElement;
+  const searchInput = document.getElementById(
+    "search-input",
+  ) as HTMLInputElement;
 
   copy.addEventListener("click", async () => {
     await navigator.clipboard.writeText(url);
@@ -66,7 +68,10 @@ function showDotts() {
     (acc: { [key: string]: string }, [key, value]) => {
       const listItem = `
         <li>
-          <div>.${key}</div>
+          <div>
+            <span>.${key}</span>
+            ${!!value.d ? `<span>(default)</span>` : ""}
+          </div>
           <div>Name: ${value.n}</div>
           <div style="word-break: break-all;">
             URL: <span class="font-mono">${value.u}</span>
@@ -103,43 +108,29 @@ function showDotts() {
         ${categoryList}
      </div>
   `;
-
-  //const dottList = Object.entries(dotts)
-  //  .map(
-  //    ([key, value]) => `
-  //      <li>
-  //        <div>.${key}</div>
-  //        <div>Name: ${value.name}</div>
-  //        <div style="word-break: break-all;">
-  //          URL: <span class="font-mono">${value.url}</span>
-  //        </div>
-  //        ${!!value.keepSlashes ? `<div>Keeps slashes in path</div>` : ""}
-  //      </li>
-  //    `,
-  //  )
-  //  .join("");
-  //
-  //document.getElementById("app")!.innerHTML = `
-  //   <div class="content-container">
-  //     <h1>Dott List</h1>
-  //      <ul class="dott-list">
-  //        ${dottList}
-  //      </ul>
-  //   </div>
-  //`;
 }
 
 function useDott({ dott, query }: { dott: string; query: string }) {
   if (!(dott in dotts)) return false;
   const selectedDott = dotts[dott];
 
-  query = query.replace("." + dott, "").trim();
+  query = query.replace("." + dott, "");
   query = encodeURIComponent(query);
 
   // keep slashes
   if (selectedDott.k === true) query = query.replace(/%2F/g, "/");
 
-  const searchUrl = selectedDott.u.replace("%s", query);
+  query = query.trim();
+
+  let searchUrl: string;
+
+  if (query.length != 0) {
+    searchUrl = selectedDott.u.replace("%s", query);
+  } else {
+    const url = new URL(selectedDott.u);
+    searchUrl = url.protocol + "//" + url.hostname;
+  }
+
   window.location.replace(searchUrl);
   return true;
 }

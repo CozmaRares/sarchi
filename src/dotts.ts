@@ -1,13 +1,11 @@
 const dotts: Readonly<
-  Record<
-    string,
-    { n: string; u: string; c: string; k?: boolean }
-  >
+  Record<string, { n: string; u: string; c: string; k?: boolean; d?: boolean }>
 > = {
   g: {
     n: "Google",
     u: "https://www.google.com/search?q=%s",
     c: "Search",
+    d: true,
   },
   gi: {
     n: "Google Images",

@@ -116,7 +116,7 @@ ul {
   margin-top: 1rem;
 }
 
-.dott-list li > div:first-child {
+.dott-list li > div:first-child > span:first-child {
   color: black;
   font-weight: 600;
   font-size: 1.125rem;
