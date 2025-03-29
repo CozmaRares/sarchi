@@ -114,13 +114,11 @@ function useDott({ dott, query }: { dott: string; query: string }) {
   if (!(dott in dotts)) return false;
   const selectedDott = dotts[dott];
 
-  query = query.replace("." + dott, "");
+  query = query.replace("." + dott, "").trim();
   query = encodeURIComponent(query);
 
   // keep slashes
   if (selectedDott.k === true) query = query.replace(/%2F/g, "/");
-
-  query = query.trim();
 
   let searchUrl: string;
 
