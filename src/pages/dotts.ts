@@ -3,6 +3,7 @@ import dotts from "../dotts";
 export default function Dotts() {
   const lists = Object.entries(dotts).reduce(
     (acc: { [key: string]: HTMLElement }, [key, value]) => {
+      const url = value.u.replace("%s", "<span class='font-bold text-gray-950'>%s</span>");
       const li = document.createElement("li");
       li.innerHTML = `
         <li class="bg-white p-4 rounded-lg shadow-sm">
@@ -13,7 +14,7 @@ export default function Dotts() {
           <div class="text-gray-600">
             <div>Name: ${value.n}</div>
             <div style="word-break: break-all;">
-              URL: <span class="font-mono">${value.u}</span>
+              URL: <span class="font-mono">${url}</span>
             </div>
             ${!!value.k ? `<div>Keeps slashes in path</div>` : ""}
           </div>
