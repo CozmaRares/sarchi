@@ -1,15 +1,18 @@
-import dotts from "../dotts";
+import { dotts, defaultDott } from "../dotts";
 
 export default function Dotts() {
   const lists = Object.entries(dotts).reduce(
     (acc: { [key: string]: HTMLElement }, [key, value]) => {
-      const url = value.u.replace("%s", "<span class='font-bold text-gray-950'>%s</span>");
+      const url = value.u.replace(
+        "%s",
+        "<span class='font-bold text-gray-950'>%s</span>",
+      );
       const li = document.createElement("li");
       li.innerHTML = `
         <li class="bg-white p-4 rounded-lg shadow-sm">
           <div class="flex flex-row gap-2 items-end">
             <span class="font-mono font-bold text-lg">.${key}</span>
-            ${!!value.d ? `<span class="text-gray-600 text-sm">(default)</span>` : ""}
+            ${key === defaultDott ? `<span class="text-gray-600 text-sm">(default)</span>` : ""}
           </div>
           <div class="text-gray-600">
             <div>Name: ${value.n}</div>
