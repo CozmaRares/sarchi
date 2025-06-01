@@ -25,6 +25,11 @@ const dotts = {
     u: "https://www.youtube.com/results?search_query=%s",
     c: cats[0],
   },
+  ym: {
+    n: "YouTube Music",
+    u: "https://music.youtube.com/search?q=%s&amp;utm_source=opensearch",
+    c: cats[0],
+  },
   gi: {
     n: "Google Images",
     u: "https://google.com/search?tbm=isch&q=%s&tbs=imgo:1",
