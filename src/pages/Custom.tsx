@@ -28,7 +28,13 @@ export default function Custom() {
 
   return (
     <div class="w-full max-w-4xl space-y-8">
-      <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
+      <div>
+        <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
+        <p class="mx-auto max-w-2/3 text-center text-lg text-balance text-gray-500">
+          Very useful if you have your own version of the app and don't want to
+          keep some URLs private (i.e. your company's internal links).
+        </p>
+      </div>
       <DottForm
         formData={formData}
         setFormData={setFormData}
@@ -227,40 +233,45 @@ function DottList({ setFormData }: ListProps) {
   return (
     <Card class="space-y-4">
       <h2 class="text-2xl font-semibold">Your Custom Dotts</h2>
-      <ul class="space-y-4">
-        <For each={Object.entries(customDotts)}>
-          {([key, value]) => (
-            <li class="flex flex-row items-center justify-between rounded-lg border border-gray-200 p-2 shadow-sm">
-              <div>
-                <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs font-medium whitespace-nowrap">
-                  .{key}
-                </span>{" "}
-                <span class="font-medium">{value.n}</span>
-                <div class="text-sm text-gray-600">
-                  <span class="font-mono text-xs">{value.u}</span>
+      <Show
+        when={Object.keys(customDotts).length !== 0}
+        fallback={<p>You don't have any custom dotts.</p>}
+      >
+        <ul class="space-y-4">
+          <For each={Object.entries(customDotts)}>
+            {([key, value]) => (
+              <li class="flex flex-row items-center justify-between rounded-lg border border-gray-200 p-2 shadow-sm">
+                <div>
+                  <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs font-medium whitespace-nowrap">
+                    .{key}
+                  </span>{" "}
+                  <span class="font-medium">{value.n}</span>
+                  <div class="text-sm text-gray-600">
+                    <span class="font-mono text-xs">{value.u}</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    {value.k && "Keeps slashes in path"}
+                  </div>
                 </div>
-                <div class="text-sm text-gray-600">
-                  {value.k && "Keeps slashes in path"}
+                <div class="flex gap-2">
+                  <button
+                    class="cursor-pointer rounded-md border border-black p-2 hover:bg-black hover:text-white"
+                    onclick={() => editDott(key)}
+                  >
+                    <Edit />
+                  </button>
+                  <button
+                    class="cursor-pointer rounded-md border border-red-600 p-2 text-red-600 accent-red-600 hover:bg-red-600 hover:text-white"
+                    onclick={() => deleteCustomDott(key)}
+                  >
+                    <Trash />
+                  </button>
                 </div>
-              </div>
-              <div class="flex gap-2">
-                <button
-                  class="cursor-pointer rounded-md border border-black p-2 hover:bg-black hover:text-white"
-                  onclick={() => editDott(key)}
-                >
-                  <Edit />
-                </button>
-                <button
-                  class="cursor-pointer rounded-md border border-red-600 p-2 text-red-600 accent-red-600 hover:bg-red-600 hover:text-white"
-                  onclick={() => deleteCustomDott(key)}
-                >
-                  <Trash />
-                </button>
-              </div>
-            </li>
-          )}
-        </For>
-      </ul>
+              </li>
+            )}
+          </For>
+        </ul>
+      </Show>
     </Card>
   );
 }
