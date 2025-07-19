@@ -1,4 +1,4 @@
-import { createSignal, Match, onCleanup, Switch } from "solid-js";
+import { Match, Switch } from "solid-js";
 import type { JSX } from "solid-js";
 import redirect from "../logic/redirect";
 import currentHash from "../logic/currentHash";
