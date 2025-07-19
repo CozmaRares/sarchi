@@ -1,14 +1,7 @@
-const cats = [
-  "Search",
-  "AI",
-  "Icons",
-  "Code",
-  "Miscellaneous",
-  "Manga",
-] as const;
+const cats = ["Search", "AI", "Icons", "Code", "Misc", "Manga"] as const;
 
-export type DottList = Record<string, DottValue>
-export type Dott = keyof typeof dotts;
+export type DottList = Record<string, DottValue>;
+export type Dott = keyof typeof originalDotts;
 export type DottValue = {
   n: string;
   u: string;
@@ -16,7 +9,7 @@ export type DottValue = {
   k?: boolean;
 };
 
-export const dotts: DottList = {
+const originalDotts = {
   g: {
     n: "Google",
     u: "https://www.google.com/search?q=%s",
@@ -29,7 +22,7 @@ export const dotts: DottList = {
   },
   ym: {
     n: "YouTube Music",
-    u: "https://music.youtube.com/search?q=%s&amp;utm_source=opensearch",
+    u: "https://music.youtube.com/search?q=%s&utm_source=opensearch",
     c: cats[0],
   },
   gi: {
@@ -140,10 +133,11 @@ export const dotts: DottList = {
     u: "https://mangadex.org/search?q=%s",
     c: cats[5],
   },
-};
+} as const satisfies DottList;
+
+export const dotts: Record<Dott, DottValue> = originalDotts;
 
 export const defaultDott = "g" satisfies Dott;
-
 
 export function getDefaultDott(dott: string): DottValue | undefined {
   if (!(dott in dotts)) return undefined;

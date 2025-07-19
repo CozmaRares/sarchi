@@ -1,0 +1,42 @@
+import { defaultDott, getDefaultDott } from "./dotts";
+import { getCustomDott } from "./localStorage";
+
+const DOTT_REGEX = /\.(\S+)/gi;
+
+export default function redirect(query: string) {
+  const candidates = query.matchAll(DOTT_REGEX);
+
+  // keep trying for each candidate
+  for (const candidate of candidates)
+    if (tryDott(candidate[1].toLowerCase(), query)) return;
+
+  // use default
+  tryDott(defaultDott, query);
+}
+
+function tryDott(dott: string, query: string) {
+  let selectedDott = getDefaultDott(dott);
+
+  if (!selectedDott) {
+    selectedDott = getCustomDott(dott);
+    if (!selectedDott) return false;
+  }
+
+  query = query.replace("." + dott, "").trim();
+  query = encodeURIComponent(query);
+
+  // keep slashes
+  if (selectedDott.k === true) query = query.replace(/%2F/g, "/");
+
+  let searchUrl: string;
+
+  if (query.length != 0) {
+    searchUrl = selectedDott.u.replace("%s", query);
+  } else {
+    const url = new URL(selectedDott.u);
+    searchUrl = url.protocol + "//" + url.hostname;
+  }
+
+  window.location.replace(searchUrl);
+  return true;
+}
