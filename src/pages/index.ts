@@ -1,6 +1,6 @@
-export default function Index() {
+export default function IndexPage() {
   document.getElementById("app")!.innerHTML = `
-    <div class="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-100">
+    <div class="flex min-h-screen flex-col items-center justify-center p-12 bg-gray-100">
       <main class="w-full max-w-150 lg:max-w-screen-xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-4">
           <div class="flex flex-col justify-center gap-4 text-center lg:text-left">

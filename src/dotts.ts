@@ -7,14 +7,16 @@ const cats = [
   "Manga",
 ] as const;
 
-type Dott = {
+export type DottList = Record<string, DottValue>
+export type Dott = keyof typeof dotts;
+export type DottValue = {
   n: string;
   u: string;
   c: string;
   k?: boolean;
 };
 
-const dotts = {
+export const dotts: DottList = {
   g: {
     n: "Google",
     u: "https://www.google.com/search?q=%s",
@@ -140,7 +142,11 @@ const dotts = {
   },
 };
 
-type DottKey = keyof typeof dotts;
-const retypedDotts = dotts as Record<DottKey, Dott>;
-const defaultDott = "g" satisfies DottKey;
-export { retypedDotts as dotts, defaultDott };
+export const defaultDott = "g" satisfies Dott;
+
+
+export function getDefaultDott(dott: string): DottValue | undefined {
+  if (!(dott in dotts)) return undefined;
+  const selectedDott = dotts[dott as Dott];
+  return selectedDott;
+}

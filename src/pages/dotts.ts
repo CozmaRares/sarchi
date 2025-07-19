@@ -1,7 +1,8 @@
 import { dotts, defaultDott } from "../dotts";
+import { getCustomDotts } from "../localStorage";
 
-export default function Dotts() {
-  const lists = Object.entries(dotts).reduce(
+export default function DottsPage() {
+  const lists = Object.entries({ ...getCustomDotts(), ...dotts }).reduce(
     (acc: { [key: string]: HTMLElement }, [key, value]) => {
       const url = value.u.replace(
         "%s",
@@ -50,7 +51,7 @@ export default function Dotts() {
     .join("");
 
   document.getElementById("app")!.innerHTML = `
-    <div class="flex w-screen flex-col items-center justify-center p-4 bg-gray-100">
+    <div class="flex w-screen flex-col items-center justify-center p-12 bg-gray-100">
        <div class="max-w-150 mx-auto space-y-8">
          <h1 class="text-4xl font-bold text-center">Dott List</h1>
           ${categoryList}
