@@ -11,18 +11,16 @@ export default function Dotts() {
   });
 
   return (
-    <div class="min-h-screen w-screen bg-gray-100 p-12">
-      <div class="mx-auto max-w-2xl space-y-8">
-        <h1 class="text-center text-4xl font-bold">Dott List</h1>
-        <For each={Array.from(categories!.entries())}>
-          {([category, dotts]) => (
-            <DottList
-              category={category}
-              dotts={dotts}
-            />
-          )}
-        </For>
-      </div>
+    <div class="max-w-2xl space-y-8">
+      <h1 class="text-center text-4xl font-bold">Dott List</h1>
+      <For each={Array.from(categories!.entries())}>
+        {([category, dotts]) => (
+          <DottList
+            category={category}
+            dotts={dotts}
+          />
+        )}
+      </For>
     </div>
   );
 }

@@ -24,8 +24,8 @@ export default function Index() {
   };
 
   return (
-    <div class="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-12">
-      <main class="mx-auto w-full max-w-150 lg:max-w-screen-xl">
+    <div class="flex flex-1 flex-col items-center justify-center">
+      <main class="max-w-xl lg:max-w-screen-xl">
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-4">
           <div class="flex flex-col justify-center gap-4 text-center lg:text-left">
             <h1 class="text-5xl font-bold">Sărchi</h1>
@@ -52,6 +52,17 @@ export default function Index() {
               </a>
               ) and made it work with my own{" "}
               <span class="line-through">bangs</span> dotts.
+            </p>
+            <p class="max-w-xl text-lg text-balance">
+              If you want to have your own version of this, I encourage you to
+              fork{" "}
+              <a
+                href="https://github.com/CozmaRares/sarchi"
+                class="underline hover:text-gray-600"
+              >
+                my repo
+              </a>{" "}
+              and deploy it however you like.
             </p>
           </div>
 

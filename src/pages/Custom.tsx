@@ -27,17 +27,15 @@ export default function Custom() {
   const [formError, setFormError] = createSignal<FormError>(defaultFormError);
 
   return (
-    <div class="min-h-screen w-screen bg-gray-100 p-12">
-      <div class="mx-auto max-w-4xl space-y-8">
-        <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
-        <DottForm
-          formData={formData}
-          setFormData={setFormData}
-          formError={formError}
-          setFormError={setFormError}
-        />
-        <DottList setFormData={setFormData} />
-      </div>
+    <div class="w-full max-w-4xl space-y-8">
+      <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
+      <DottForm
+        formData={formData}
+        setFormData={setFormData}
+        formError={formError}
+        setFormError={setFormError}
+      />
+      <DottList setFormData={setFormData} />
     </div>
   );
 }

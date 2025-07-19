@@ -1,6 +1,7 @@
 import { createSignal, Match, onCleanup, Switch } from "solid-js";
 import type { JSX } from "solid-js";
 import redirect from "../logic/redirect";
+import currentHash from "../logic/currentHash";
 
 type Route = {
   hash: string;
@@ -9,9 +10,10 @@ type Route = {
 
 type Props = {
   routes: Route[];
+  layout: ({ children }: { children: JSX.Element }) => JSX.Element;
 };
 
-export default function Router({ routes }: Props) {
+export default function Router({ routes, layout: Layout }: Props) {
   const currentLocation = new URL(window.location.href);
 
   let query = currentLocation.searchParams.get("q")?.trim() ?? "";
@@ -20,23 +22,13 @@ export default function Router({ routes }: Props) {
     return null;
   }
 
-  const [currentHash, setCurrentHash] = createSignal(currentLocation.hash);
-
-  const handleHashChange = () => {
-    setCurrentHash(window.location.hash);
-  };
-
-  window.addEventListener("hashchange", handleHashChange);
-
-  onCleanup(() => {
-    window.removeEventListener("hashchange", handleHashChange);
-  });
-
   return (
-    <Switch fallback={null}>
-      {routes.map(route => (
-        <Match when={route.hash === currentHash()}>{route.component}</Match>
-      ))}
-    </Switch>
+    <Layout>
+      <Switch fallback={null}>
+        {routes.map(route => (
+          <Match when={route.hash === currentHash()}>{route.component}</Match>
+        ))}
+      </Switch>
+    </Layout>
   );
 }
