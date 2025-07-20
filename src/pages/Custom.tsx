@@ -121,6 +121,7 @@ function DottForm({
           <input
             type="text"
             name="key"
+            id="key"
             class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., g, yt, gh"
             value={formData().key}
@@ -145,6 +146,7 @@ function DottForm({
           <input
             type="text"
             name="name"
+            id="name"
             class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., Google, YouTube, GitHub"
             value={formData().name}
@@ -169,6 +171,7 @@ function DottForm({
           <input
             type="text"
             name="url"
+            id="url"
             class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., https://google.com/search?q=%s"
             value={formData().url}
@@ -191,6 +194,7 @@ function DottForm({
           <input
             type="checkbox"
             name="keepSlashes"
+            id="keepSlashes"
             class="size-4 rounded-md border border-gray-400 bg-gray-100"
             checked={formData().keepSlashes}
             onChange={e =>
