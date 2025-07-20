@@ -1,4 +1,10 @@
-import { createSignal, For, Show, type Accessor, type Setter } from "solid-js";
+import {
+  createSignal,
+  For,
+  Show,
+  type Accessor,
+  type Setter,
+} from "solid-js";
 import Card from "../components/Card";
 import {
   addCustomDott,
@@ -31,8 +37,8 @@ export default function Custom() {
       <div>
         <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
         <p class="mx-auto max-w-2/3 text-center text-lg text-balance text-gray-500">
-          Very useful if you have your own version of the app and don't want to
-          keep some URLs private (i.e. your company's internal links).
+          Very useful if you have your own version of the app and want to keep
+          some URLs private (like your company's internal links).
         </p>
       </div>
       <DottForm

@@ -1,4 +1,4 @@
-import { Match, Switch } from "solid-js";
+import { For, Match, Switch } from "solid-js";
 import type { JSX } from "solid-js";
 import redirect from "../logic/redirect";
 import currentHash from "../logic/currentHash";
@@ -25,9 +25,11 @@ export default function Router({ routes, layout: Layout }: Props) {
   return (
     <Layout>
       <Switch fallback={null}>
-        {routes.map(route => (
-          <Match when={route.hash === currentHash()}>{route.component}</Match>
-        ))}
+        <For each={routes}>
+          {route => (
+            <Match when={route.hash === currentHash()}>{route.component}</Match>
+          )}
+        </For>
       </Switch>
     </Layout>
   );

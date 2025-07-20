@@ -74,16 +74,16 @@ export default function Index() {
               <p class="font-medium">
                 Add this url as a custom search engine in your browser:
               </p>
-              <div class="flex flex-row items-center gap-2 divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
+              <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
                 <input
                   ref={customEngineUrlRef}
                   type="text"
                   value="https://sarchi.raru.dev/?q=%s"
                   readOnly
-                  class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-1 focus-visible:ring-black focus-visible:outline-none"
+                  class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
                 />
                 <button
-                  class="size-8 hover:cursor-pointer"
+                  class="flex size-10 items-center justify-center rounded-r-md ring-offset-gray-100 hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
                   onclick={copyCustomEngineUrl}
                 >
                   <img
@@ -111,14 +111,14 @@ export default function Index() {
                 ref={searchFormRef}
                 onsubmit={search}
               >
-                <div class="flex flex-row items-center gap-2 divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
+                <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
                   <input
                     ref={searchInputRef}
                     type="text"
                     placeholder="cat videos .y"
-                    class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-1 focus-visible:ring-black focus-visible:outline-none"
+                    class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
                   />
-                  <button class="size-8 hover:cursor-pointer">
+                  <button class="flex size-10 items-center justify-center rounded-r-md ring-offset-gray-100 hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none">
                     <img
                       src="/search.svg"
                       alt="Search"
