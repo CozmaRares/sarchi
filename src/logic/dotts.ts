@@ -45,7 +45,7 @@ const originalDotts = {
     url: "https://fontawesome.com/search?q=%s",
     category: cats[2],
   },
-  lurl: {
+  lu: {
     name: "Lucide",
     url: "https://lucide.dev/icons/?search=%s",
     category: cats[2],
@@ -77,12 +77,12 @@ const originalDotts = {
     url: "https://github.com/search?q=%s",
     category: cats[3],
   },
-  mdname: {
+  mdn: {
     name: "MDN Web Docs",
     url: "https://developer.mozilla.org/search?q=%s",
     category: cats[3],
   },
-  caname: {
+  can: {
     name: "Can I Use",
     url: "https://caniuse.com/?search=%s",
     category: cats[3],
@@ -102,7 +102,7 @@ const originalDotts = {
     url: "https://translate.google.com/?sl=ro&tl=en&text=%s&op=translate",
     category: cats[4],
   },
-  acategory: {
+  ac: {
     name: "AC UTCN",
     url: "https://ac.utcluj.ro/%s.html",
     keepSlashes: true,
@@ -118,7 +118,7 @@ const originalDotts = {
     url: "https://ctpcj.ro/index.php/ro/orare-linii/linii-urbane/linia-%s",
     category: cats[4],
   },
-  tcategory: {
+  tc: {
     name: "ToonClash",
     url: "https://toonclash.com/?s=%s&post_type=wp-manga",
     category: cats[5],
