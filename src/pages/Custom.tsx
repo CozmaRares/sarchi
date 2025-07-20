@@ -1,15 +1,11 @@
-import {
-  createSignal,
-  For,
-  Show,
-  type Accessor,
-  type Setter,
-} from "solid-js";
+import { createSignal, For, Show, type Accessor, type Setter } from "solid-js";
 import Card from "../components/Card";
 import {
   addCustomDott,
   customDotts,
   deleteCustomDott,
+  getCustomDott,
+  hasCustomDotts,
 } from "../logic/localStorage";
 
 const defaultFormData = {
@@ -99,7 +95,7 @@ function DottForm({
 
     if (Object.values(formError()).some(Boolean)) return;
 
-    addCustomDott(key, { n: name, u: url, k: keepSlashes });
+    addCustomDott(key, { name, url, keepSlashes });
     setFormData(defaultFormData);
   };
 
@@ -114,7 +110,7 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="key"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm text-gray-700"
             >
               Key
             </label>
@@ -125,7 +121,7 @@ function DottForm({
           <input
             type="text"
             name="key"
-            class="w-full rounded-md border border-gray-300 p-2"
+            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., g, yt, gh"
             value={formData().key}
             onChange={e =>
@@ -137,7 +133,7 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="name"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm text-gray-700"
             >
               Name
             </label>
@@ -149,7 +145,7 @@ function DottForm({
           <input
             type="text"
             name="name"
-            class="w-full rounded-md border border-gray-300 p-2"
+            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., Google, YouTube, GitHub"
             value={formData().name}
             onChange={e =>
@@ -161,7 +157,7 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="url"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm text-gray-700"
             >
               URL
             </label>
@@ -173,7 +169,7 @@ function DottForm({
           <input
             type="text"
             name="url"
-            class="w-full rounded-md border border-gray-300 p-2"
+            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
             placeholder="e.g., https://google.com/search?q=%s"
             value={formData().url}
             onChange={e =>
@@ -195,7 +191,7 @@ function DottForm({
           <input
             type="checkbox"
             name="keepSlashes"
-            class="size-4 rounded-md border border-gray-300"
+            class="size-4 rounded-md border border-gray-400 bg-gray-100"
             checked={formData().keepSlashes}
             onChange={e =>
               setFormData(prev => ({ ...prev, keepSlashes: e.target.checked }))
@@ -203,7 +199,7 @@ function DottForm({
           />
           <label
             for="keepSlashes"
-            class="block text-sm font-medium"
+            class="block text-sm"
           >
             Keep slashes in path (don't encode in URI)
           </label>
@@ -225,22 +221,34 @@ type ListProps = {
 
 function DottList({ setFormData }: ListProps) {
   const editDott = (key: string) => {
-    const dott = customDotts[key];
+    const dott = getCustomDott(key);
     if (!dott) return;
 
     setFormData({
       key,
-      name: dott.n,
-      url: dott.u,
-      keepSlashes: dott.k ?? false,
+      name: dott.name,
+      url: dott.url,
+      keepSlashes: dott.keepSlashes ?? false,
     });
   };
 
   return (
     <Card class="space-y-4">
-      <h2 class="text-2xl font-semibold">Your Custom Dotts</h2>
+      <div class="">
+        <h2 class="text-2xl font-semibold">Your Custom Dotts</h2>
+        <Show when={hasCustomDotts()}>
+          You can also{" "}
+          <a
+            href="#export"
+            class="underline"
+          >
+            export ↗
+          </a>{" "}
+          your custom dotts.
+        </Show>
+      </div>
       <Show
-        when={Object.keys(customDotts).length !== 0}
+        when={hasCustomDotts()}
         fallback={<p>You don't have any custom dotts.</p>}
       >
         <ul class="space-y-4">
@@ -248,15 +256,15 @@ function DottList({ setFormData }: ListProps) {
             {([key, value]) => (
               <li class="flex flex-row items-center justify-between rounded-lg border border-gray-200 p-2 shadow-sm">
                 <div>
-                  <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs font-medium whitespace-nowrap">
+                  <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs whitespace-nowrap">
                     .{key}
                   </span>{" "}
-                  <span class="font-medium">{value.n}</span>
+                  {value.name}
                   <div class="text-sm text-gray-600">
-                    <span class="font-mono text-xs">{value.u}</span>
+                    <span class="font-mono text-xs">{value.url}</span>
                   </div>
                   <div class="text-sm text-gray-600">
-                    {value.k && "Keeps slashes in path"}
+                    {value.keepSlashes && "Keeps slashes in path"}
                   </div>
                 </div>
                 <div class="flex gap-2">

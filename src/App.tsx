@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Router from "./components/Router";
 import Nav from "./components/Nav";
 import TailwindIndicator from "./components/TailwindIndicator";
+import Export from "./pages/Export";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         { hash: "", component: <Index /> },
         { hash: "#dotts", component: <Dotts /> },
         { hash: "#custom", component: <Custom /> },
+        { hash: "#export", component: <Export /> },
       ]}
       layout={Layout}
     />

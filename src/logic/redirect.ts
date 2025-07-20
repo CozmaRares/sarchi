@@ -25,15 +25,14 @@ function tryDott(dott: string, query: string) {
   query = query.replace("." + dott, "").trim();
   query = encodeURIComponent(query);
 
-  // keep slashes
-  if (selectedDott.k === true) query = query.replace(/%2F/g, "/");
+  if (selectedDott.keepSlashes === true) query = query.replace(/%2F/g, "/");
 
   let searchUrl: string;
 
   if (query.length != 0) {
-    searchUrl = selectedDott.u.replace("%s", query);
+    searchUrl = selectedDott.url.replace("%s", query);
   } else {
-    const url = new URL(selectedDott.u);
+    const url = new URL(selectedDott.url);
     searchUrl = url.protocol + "//" + url.hostname;
   }
 

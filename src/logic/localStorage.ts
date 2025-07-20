@@ -4,7 +4,7 @@ import type { DottList, DottValue } from "./dotts";
 const CUSTOM_DOTTS_KEY = "customDotts";
 const DEFAULT_CATEGORY = "Custom";
 
-export type DottValueInput = Omit<DottValue, "c">;
+export type DottValueInput = Omit<DottValue, "category">;
 
 export const customDotts = createMutable<DottList>(
   JSON.parse(localStorage.getItem(CUSTOM_DOTTS_KEY) ?? "{}"),
@@ -19,11 +19,9 @@ function saveCustomDotts(): void {
 }
 
 export function addCustomDott(key: string, value: DottValueInput): void {
-  customDotts[key] = {
-    ...value,
-    c: DEFAULT_CATEGORY,
-  };
+  if (value.keepSlashes === false) delete value.keepSlashes;
 
+  customDotts[key] = { ...value, category: DEFAULT_CATEGORY };
   saveCustomDotts();
 }
 
@@ -32,4 +30,18 @@ export function deleteCustomDott(key: string): void {
     delete customDotts[key];
     saveCustomDotts();
   }
+}
+
+export function importDotts(data: string) {
+  console.log(data);
+
+  const imported = JSON.parse(data);
+
+  for (const [key, value] of Object.entries(imported)) {
+    addCustomDott(key, value as DottValueInput);
+  }
+}
+
+export function hasCustomDotts(): boolean {
+  return Object.keys(customDotts).length !== 0;
 }

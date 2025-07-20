@@ -71,9 +71,7 @@ export default function Index() {
             class="flex flex-col justify-center space-y-4"
           >
             <div class="space-y-3">
-              <p class="font-medium">
-                Add this url as a custom search engine in your browser:
-              </p>
+              <p>Add this url as a custom search engine in your browser:</p>
               <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
                 <input
                   ref={customEngineUrlRef}
@@ -103,7 +101,7 @@ export default function Index() {
             </div>
 
             <div class="space-y-3">
-              <p class="font-medium">
+              <p>
                 Do a search to have the url be automatically picked up by your
                 browser as a recently used search engine:
               </p>

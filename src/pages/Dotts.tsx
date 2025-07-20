@@ -26,10 +26,10 @@ export default function Dotts() {
 }
 
 type CategorizedDott = {
-  d: string;
-  n: string;
-  u: string;
-  k?: boolean;
+  dottKey: string;
+  name: string;
+  url: string;
+  keepSlashes?: boolean;
 };
 
 function getCategories() {
@@ -38,15 +38,15 @@ function getCategories() {
   const combinedDotts = { ...customDotts, ...dotts };
 
   for (const [key, value] of Object.entries(combinedDotts)) {
-    if (!categories.has(value.c)) {
-      categories.set(value.c, []);
+    if (!categories.has(value.category)) {
+      categories.set(value.category, []);
     }
 
-    categories.get(value.c)!.push({
-      d: key,
-      n: value.n,
-      u: value.u,
-      k: value.k,
+    categories.get(value.category)!.push({
+      dottKey: key,
+      name: value.name,
+      url: value.url,
+      keepSlashes: value.keepSlashes,
     });
   }
 
@@ -73,7 +73,12 @@ function DottList({ category, dotts }: DottListProps) {
   );
 }
 
-function DottItem({ d, n, u, k }: CategorizedDott) {
+function DottItem({
+  dottKey: d,
+  name: n,
+  url: u,
+  keepSlashes: k,
+}: CategorizedDott) {
   return (
     <li>
       <Card>
