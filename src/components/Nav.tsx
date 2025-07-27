@@ -1,29 +1,37 @@
-import { For } from "solid-js";
 import currentHash from "../logic/currentHash";
+import { Home, Layers, Plus } from "lucide-solid";
 
-const links = [
-  { hash: "", name: "Home" },
-  { hash: "#dotts", name: "Available Dotts" },
-  { hash: "#custom", name: "Add Your Own" },
+const NAV_ITEMS = [
+  { hash: "", name: "Home", icon: Home },
+  { hash: "#dotts", name: "Available Dotts", icon: Layers },
+  { hash: "#custom", name: "Add Your Own", icon: Plus },
 ];
 
 export default function Nav() {
   return (
-    <nav class="fixed right-0 bottom-0 left-0 flex flex-row items-center justify-center border-t-2 border-gray-600 bg-white/40 shadow-gray-600 backdrop-blur-sm md:right-auto md:bottom-5 md:left-1/2 md:-translate-x-1/2 md:rounded-full md:border-none md:shadow-md">
-      <ul class="flex flex-row items-center divide-x-2 divide-black rounded-full px-2 md:px-6 md:py-4">
-        <For each={links}>
-          {({ hash, name }) => (
-            <li class="py-2 md:py-0">
+    <div class="fixed bottom-0 md:bottom-6 left-0 right-0 md:left-1/2 md:right-auto z-50 md:-translate-x-1/2 border md:rounded-full border-black/50 bg-white/90 px-2 py-2 shadow-lg backdrop-blur-md">
+      <nav class="">
+        <div class="flex items-center justify-center">
+          {NAV_ITEMS.map(item => {
+            const Icon = item.icon;
+            const isActive = currentHash() === item.hash;
+
+            return (
               <a
-                href={hash.length == 0 ? "#" : hash}
-                class={`relative mx-2 p-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-right after:[scale:0_1] after:bg-black after:transition-[scale] hover:after:origin-left ${currentHash() === hash ? "after:[scale:1_1]" : "hover:after:[scale:1_1]"}`}
+                href={item.hash.length == 0 ? "#" : item.hash}
+                class={`relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-gray-900 text-white shadow-md"
+                    : "hover:bg-gray-100/80 hover:text-gray-900"
+                } `}
               >
-                {name}
+                <Icon class="size-4" />
+                <span class="whitespace-nowrap">{item.name}</span>
               </a>
-            </li>
-          )}
-        </For>
-      </ul>
-    </nav>
+            );
+          })}
+        </div>
+      </nav>
+    </div>
   );
 }

@@ -14,6 +14,9 @@ importers:
       '@types/node':
         specifier: ^24.0.15
         version: 24.0.15
+      lucide-solid:
+        specifier: ^0.526.0
+        version: 0.526.0(solid-js@1.9.7)
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -1585,6 +1588,11 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-solid@0.526.0:
+    resolution: {integrity: sha512-oPvewVG3KzpMPQcRCc3FU0HabC1DcVCdFxiJiwHZ2EKHfrPOL2Eq+vOVU+/raZfcJt8HY/+PKaYXD/DB9K19AQ==}
+    peerDependencies:
+      solid-js: ^1.4.7
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -3827,6 +3835,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-solid@0.526.0(solid-js@1.9.7):
+    dependencies:
+      solid-js: 1.9.7
 
   magic-string@0.25.9:
     dependencies:

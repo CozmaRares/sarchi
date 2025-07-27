@@ -1,25 +1,53 @@
-import type { JSX } from "solid-js";
-
-import Custom from "./pages/Custom";
-import Dotts from "./pages/Dotts";
-import Index from "./pages/Index";
-
-import Router from "./components/Router";
+import { lazy, type JSX } from "solid-js";
+import { Match, Switch } from "solid-js";
+import redirect from "./logic/redirect";
+import currentHash from "./logic/currentHash";
+import { importDotts } from "./logic/localStorage";
 import Nav from "./components/Nav";
 import TailwindIndicator from "./components/TailwindIndicator";
-import Export from "./pages/Export";
 
-function App() {
+const Index = lazy(() => import("./pages/Index"));
+const Dotts = lazy(() => import("./pages/Dotts"));
+const Custom = lazy(() => import("./pages/Custom"));
+const Export = lazy(() => import("./pages/Export"));
+
+export default function App() {
+  const currentLocation = new URL(window.location.href);
+
+  if (currentLocation.pathname !== "/") {
+    window.location.pathname = "/";
+    return null;
+  }
+
+  let query = currentLocation.searchParams.get("q")?.trim() ?? "";
+  if (query) {
+    redirect(query);
+    return null;
+  }
+
+  let importData = currentLocation.searchParams.get("import")?.trim() ?? "";
+  if (importData) {
+    importDotts(atob(importData));
+    return <RedirectHome />;
+  }
+
   return (
-    <Router
-      routes={[
-        { hash: "", component: <Index /> },
-        { hash: "#dotts", component: <Dotts /> },
-        { hash: "#custom", component: <Custom /> },
-        { hash: "#export", component: <Export /> },
-      ]}
-      layout={Layout}
-    />
+    <Layout>
+      <Switch fallback={<RedirectHome />}>
+        <Match when={currentHash() === ""}>
+          <Index />
+        </Match>
+        <Match when={currentHash() === "#dotts"}>
+          <Dotts />
+        </Match>
+        <Match when={currentHash() === "#custom"}>
+          <Custom />
+        </Match>
+        <Match when={currentHash() === "#export"}>
+          <Export />
+        </Match>
+      </Switch>
+    </Layout>
   );
 }
 
@@ -33,4 +61,9 @@ function Layout({ children }: { children: JSX.Element }) {
   );
 }
 
-export default App;
+function RedirectHome() {
+  console.log("redirecting home");
+  window.location.hash = "";
+  window.location.search = "";
+  return null;
+}

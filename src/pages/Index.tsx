@@ -1,18 +1,7 @@
 import Card from "../components/Card";
+import CopyInput from "../components/CopyInput";
 
 export default function Index() {
-  let customEngineUrlRef!: HTMLInputElement;
-  let clipboardIconRef!: HTMLImageElement;
-
-  const copyCustomEngineUrl = async () => {
-    await navigator.clipboard.writeText(customEngineUrlRef.value);
-    clipboardIconRef.src = "/clipboard-check.svg";
-
-    setTimeout(() => {
-      clipboardIconRef.src = "/clipboard.svg";
-    }, 2000);
-  };
-
   let searchInputRef!: HTMLInputElement;
   let searchFormRef!: HTMLFormElement;
 
@@ -72,26 +61,7 @@ export default function Index() {
           >
             <div class="space-y-3">
               <p>Add this url as a custom search engine in your browser:</p>
-              <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
-                <input
-                  ref={customEngineUrlRef}
-                  type="text"
-                  value="https://sarchi.raru.dev/?q=%s"
-                  readOnly
-                  class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
-                />
-                <button
-                  class="flex size-10 items-center justify-center rounded-r-md ring-offset-gray-100 hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
-                  onclick={copyCustomEngineUrl}
-                >
-                  <img
-                    ref={clipboardIconRef}
-                    src="/clipboard.svg"
-                    alt="Copy"
-                    class="size-6"
-                  />
-                </button>
-              </div>
+              <CopyInput value="https://sarchi.raru.dev/?q=%s" />
             </div>
 
             <div class="flex flex-row items-center gap-2">
