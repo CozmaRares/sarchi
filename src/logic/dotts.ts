@@ -1,11 +1,18 @@
-const cats = ["Search", "AI", "Icons", "Code", "Misc", "Manga"] as const;
+type Category =
+  | "Search"
+  | "Music"
+  | "AI"
+  | "Code"
+  | "Misc"
+  | "Manga"
+  | "Custom";
 
 export type DottList = Record<string, DottValue>;
 export type Dott = keyof typeof originalDotts;
 export type DottValue = {
   name: string;
   url: string;
-  category: string;
+  category: Category;
   keepSlashes?: boolean;
 };
 
@@ -13,125 +20,114 @@ const originalDotts = {
   g: {
     name: "Google",
     url: "https://www.google.com/search?q=%s",
-    category: cats[0],
+    category: "Search",
   },
   y: {
     name: "YouTube",
     url: "https://www.youtube.com/results?search_query=%s",
-    category: cats[0],
+    category: "Search",
   },
   ym: {
     name: "YouTube Music",
     url: "https://music.youtube.com/search?q=%s&utm_source=opensearch",
-    category: cats[0],
+    category: "Music",
+  },
+  ymm: {
+    name: "YouTube Music Liked Music Playlist",
+    url: "https://music.youtube.com/playlist?list=LM",
+    category: "Music",
   },
   gi: {
     name: "Google Images",
     url: "https://google.com/search?tbm=isch&q=%s&tbs=imgo:1",
-    category: cats[0],
-  },
-  z: {
-    name: "Z Library",
-    url: "https://z-library.rs/s/?q=%s",
-    category: cats[0],
+    category: "Search",
   },
   t3: {
     name: "T3 Chat",
     url: "https://www.t3.chat/new?q=%s",
-    category: cats[1],
+    category: "AI",
   },
   fas: {
     name: "Font Awesome",
     url: "https://fontawesome.com/search?q=%s",
-    category: cats[2],
+    category: "Code",
   },
   lu: {
     name: "Lucide",
     url: "https://lucide.dev/icons/?search=%s",
-    category: cats[2],
+    category: "Code",
   },
   npm: {
     name: "NPM",
     url: "https://www.npmjs.com/search?q=%s",
-    category: cats[3],
+    category: "Code",
   },
   rs: {
-    name: "Docs.rs Crates",
-    url: "https://docs.rs/%s",
-    keepSlashes: true,
-    category: cats[3],
-  },
-  rss: {
     name: "Docs.rs",
     url: "https://docs.rs/releases/search?query=%s",
-    category: cats[3],
+    category: "Code",
   },
   gh: {
     name: "GitHub Repo",
     url: "https://github.com/%s",
     keepSlashes: true,
-    category: cats[3],
+    category: "Code",
   },
   ghs: {
     name: "GitHub Search",
     url: "https://github.com/search?q=%s",
-    category: cats[3],
+    category: "Code",
   },
   mdn: {
     name: "MDN Web Docs",
     url: "https://developer.mozilla.org/search?q=%s",
-    category: cats[3],
+    category: "Code",
   },
   can: {
     name: "Can I Use",
     url: "https://caniuse.com/?search=%s",
-    category: cats[3],
+    category: "Code",
   },
   tr: {
     name: "Google Translate (auto to English)",
     url: "https://translate.google.com/?sl=auto&tl=en&text=%s&op=translate",
-    category: cats[4],
+    category: "Misc",
   },
   ter: {
     name: "Google Translate (English to Romanian)",
     url: "https://translate.google.com/?sl=en&tl=ro&text=%s&op=translate",
-    category: cats[4],
+    category: "Misc",
   },
   tre: {
     name: "Google Translate (Romanian to English)",
     url: "https://translate.google.com/?sl=ro&tl=en&text=%s&op=translate",
-    category: cats[4],
+    category: "Misc",
   },
   ac: {
     name: "AC UTCN",
     url: "https://ac.utcluj.ro/%s.html",
     keepSlashes: true,
-    category: cats[4],
+    category: "Misc",
   },
   mal: {
     name: "My Anime List",
     url: "https://myanimelist.net/anime.php?q=%s",
-    category: cats[4],
+    category: "Misc",
   },
   ctp: {
     name: "CTP Cluj",
     url: "https://ctpcj.ro/index.php/ro/orare-linii/linii-urbane/linia-%s",
-    category: cats[4],
+    category: "Misc",
   },
   tc: {
     name: "ToonClash",
     url: "https://toonclash.com/?s=%s&post_type=wp-manga",
-    category: cats[5],
-  },
-  asura: {
-    name: "Asura Comic",
-    url: "https://asuracomic.net/series?page=1&name=%s",
-    category: cats[5],
+    category: "Manga",
   },
   mdex: {
     name: "MangaDex",
     url: "https://mangadex.org/search?q=%s",
-    category: cats[5],
+    category: "Manga",
   },
 } as const satisfies DottList;
 

@@ -1,17 +1,18 @@
 import currentHash from "../logic/currentHash";
-import { Home, Layers, Plus } from "lucide-solid";
+import { Home, Layers, MoveUpRight, Plus } from "lucide-solid";
 
 const NAV_ITEMS = [
   { hash: "", name: "Home", icon: Home },
   { hash: "#dotts", name: "Available Dotts", icon: Layers },
   { hash: "#custom", name: "Add Your Own", icon: Plus },
+  { hash: "#export", name: "Export Your Dotts", icon: MoveUpRight },
 ];
 
 export default function Nav() {
   return (
-    <div class="fixed bottom-0 md:bottom-6 left-0 right-0 md:left-1/2 md:right-auto z-50 md:-translate-x-1/2 border md:rounded-full border-black/50 bg-white/90 px-2 py-2 shadow-lg backdrop-blur-md">
-      <nav class="">
-        <div class="flex items-center justify-center">
+    <div class="fixed right-0 bottom-0 left-0 z-50 border border-black/50 bg-white/90 px-2 py-2 shadow-lg backdrop-blur-md md:right-auto md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:rounded-full">
+      <nav>
+        <div class="flex flex-wrap items-center justify-center md:flex-nowrap">
           {NAV_ITEMS.map(item => {
             const Icon = item.icon;
             const isActive = currentHash() === item.hash;

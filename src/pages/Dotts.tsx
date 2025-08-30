@@ -2,6 +2,7 @@ import { createComputed, For } from "solid-js";
 import { dotts, defaultDott } from "../logic/dotts";
 import { customDotts } from "../logic/localStorage";
 import Card from "../components/Card";
+import DottUrl from "../components/DottUrl";
 
 export default function Dotts() {
   let categories: ReturnType<typeof getCategories>;
@@ -93,28 +94,12 @@ function DottItem({
           <div style="word-break: break-all;">
             URL:{" "}
             <span class="font-mono">
-              <SearchUrl url={u} />
+              <DottUrl url={u} />
             </span>
           </div>
           {k && <div>Keeps slashes in path</div>}
         </div>
       </Card>
     </li>
-  );
-}
-
-function SearchUrl({ url }: { url: string }) {
-  const parts = url.split("%s");
-
-  if (parts.length === 1) return parts[0];
-
-  const [url1, url2] = parts;
-
-  return (
-    <>
-      {url1}
-      <span class="font-bold text-gray-950">%s</span>
-      {url2}
-    </>
   );
 }

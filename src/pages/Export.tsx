@@ -2,6 +2,7 @@ import { createComputed, createSignal } from "solid-js";
 import Card from "../components/Card";
 import { customDotts } from "../logic/localStorage";
 import CopyInput from "../components/CopyInput";
+import CustomDottList from "../components/CustomDottList";
 
 export default function Export() {
   const [stringified, setStringified] = createSignal("");
@@ -19,27 +20,16 @@ export default function Export() {
   return (
     <div class="w-full max-w-2xl space-y-8">
       <h1 class="text-center text-4xl font-bold">Export Your Custom Dotts</h1>
-
       <Card>
         <div class="space-y-3">
           <p>
-            Copy this url and paste it in your browser's address bar to import
-            the dotts.
-          </p>
-          <p class="text-xs">
-            You can also copy the url manually in case it didn't automatically
-            copy.
+            Copy this url and paste it in the browser's address bar to import
+            your custom dotts.
           </p>
           <CopyInput value={url()} />
         </div>
       </Card>
-
-      <Card class="space-y-4">
-        <h2>Current Shape of the Dotts</h2>
-        <div class="rounded-lg border border-gray-400 bg-gray-100 p-4">
-          <code class="whitespace-pre-wrap">{stringified()}</code>
-        </div>
-      </Card>
+      <CustomDottList />
     </div>
   );
 }

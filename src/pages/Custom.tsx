@@ -1,13 +1,20 @@
-import { createSignal, For, Show, type Accessor, type Setter } from "solid-js";
+import {
+  createMemo,
+  createSignal,
+  Show,
+  type Accessor,
+  type Setter,
+} from "solid-js";
 import { Trash2, Pencil } from "lucide-solid";
 import Card from "../components/Card";
 import {
   addCustomDott,
-  customDotts,
   deleteCustomDott,
   getCustomDott,
-  hasCustomDotts,
 } from "../logic/localStorage";
+import DottUrl from "../components/DottUrl";
+import CustomDottList from "../components/CustomDottList";
+import type { Dott, DottValue } from "../logic/dotts";
 
 const defaultFormData = {
   key: "",
@@ -29,6 +36,11 @@ export default function Custom() {
   const [formData, setFormData] = createSignal<FormData>(defaultFormData);
   const [formError, setFormError] = createSignal<FormError>(defaultFormError);
 
+  const editDott = (key: Dott, value: DottValue) => {
+    const { name, url, keepSlashes = false } = value;
+    setFormData({ key, name, url, keepSlashes });
+  };
+
   return (
     <div class="w-full max-w-4xl space-y-8">
       <div>
@@ -44,7 +56,24 @@ export default function Custom() {
         formError={formError}
         setFormError={setFormError}
       />
-      <DottList setFormData={setFormData} />
+      <CustomDottList
+        onAfterItem={(key, value) => (
+          <div class="flex gap-2">
+            <button
+              class="cursor-pointer rounded-md border border-black p-2 hover:bg-black hover:text-white"
+              onclick={() => editDott(key, value)}
+            >
+              <Pencil class="size-4" />
+            </button>
+            <button
+              class="cursor-pointer rounded-md border border-red-600 p-2 text-red-600 accent-red-600 hover:bg-red-600 hover:text-white"
+              onclick={() => deleteCustomDott(key)}
+            >
+              <Trash2 class="size-4" />
+            </button>
+          </div>
+        )}
+      />
     </div>
   );
 }
@@ -71,15 +100,11 @@ function DottForm({
   formError,
   setFormError,
 }: FormProps) {
+  const resetForm = () => setFormData(defaultFormData);
   const submitForm = (e: Event) => {
     e.preventDefault();
 
-    const data = formData();
-
-    const key = data.key;
-    const name = data.name;
-    const url = data.url;
-    const keepSlashes = data.keepSlashes;
+    const { key, name, url, keepSlashes } = formData();
 
     let keyError: string | null = null;
     let nameError: string | null = null;
@@ -97,8 +122,12 @@ function DottForm({
     if (Object.values(formError()).some(Boolean)) return;
 
     addCustomDott(key, { name, url, keepSlashes });
-    setFormData(defaultFormData);
+    resetForm();
   };
+
+  const isAlreadyDefined = createMemo(
+    () => getCustomDott(formData().key) !== undefined,
+  );
 
   return (
     <Card class="space-y-4">
@@ -139,7 +168,6 @@ function DottForm({
             >
               Name
             </label>
-
             <Show when={formError().name}>
               <div class="text-sm text-red-600">{formError().name}</div>
             </Show>
@@ -186,8 +214,7 @@ function DottForm({
               where the search term should be placed.
             </p>
             <p>
-              For example: https://google.com/search?q=
-              <span class="font-bold text-gray-950">%s</span>
+              For example: <DottUrl url="https://google.com/search?q=%s" />
             </p>
           </div>
         </div>
@@ -213,84 +240,16 @@ function DottForm({
           type="submit"
           class="w-full cursor-pointer rounded-md bg-gray-900 p-2 text-white hover:bg-gray-800"
         >
-          Add Dott
+          {isAlreadyDefined() ? "Update" : "Add"} Dott
+        </button>
+        <button
+          type="button"
+          class="w-full cursor-pointer rounded-md border border-gray-900 p-2 hover:bg-gray-900 hover:text-white"
+          onclick={resetForm}
+        >
+          Reset Form
         </button>
       </form>
-    </Card>
-  );
-}
-
-type ListProps = {
-  setFormData: Setter<FormData>;
-};
-
-function DottList({ setFormData }: ListProps) {
-  const editDott = (key: string) => {
-    const dott = getCustomDott(key);
-    if (!dott) return;
-
-    setFormData({
-      key,
-      name: dott.name,
-      url: dott.url,
-      keepSlashes: dott.keepSlashes ?? false,
-    });
-  };
-
-  return (
-    <Card class="space-y-4">
-      <div class="">
-        <h2 class="text-2xl font-semibold">Your Custom Dotts</h2>
-        <Show when={hasCustomDotts()}>
-          You can also{" "}
-          <a
-            href="#export"
-            class="underline"
-          >
-            export ↗
-          </a>{" "}
-          your custom dotts.
-        </Show>
-      </div>
-      <Show
-        when={hasCustomDotts()}
-        fallback={<p>You don't have any custom dotts.</p>}
-      >
-        <ul class="space-y-4">
-          <For each={Object.entries(customDotts)}>
-            {([key, value]) => (
-              <li class="flex flex-row items-center justify-between rounded-lg border border-gray-200 p-2 shadow-sm">
-                <div>
-                  <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs whitespace-nowrap">
-                    .{key}
-                  </span>{" "}
-                  {value.name}
-                  <div class="text-sm text-gray-600">
-                    <span class="font-mono text-xs">{value.url}</span>
-                  </div>
-                  <div class="text-sm text-gray-600">
-                    {value.keepSlashes && "Keeps slashes in path"}
-                  </div>
-                </div>
-                <div class="flex gap-2">
-                  <button
-                    class="cursor-pointer rounded-md border border-black p-2 hover:bg-black hover:text-white"
-                    onclick={() => editDott(key)}
-                  >
-                    <Pencil class="size-4" />
-                  </button>
-                  <button
-                    class="cursor-pointer rounded-md border border-red-600 p-2 text-red-600 accent-red-600 hover:bg-red-600 hover:text-white"
-                    onclick={() => deleteCustomDott(key)}
-                  >
-                    <Trash2 class="size-4" />
-                  </button>
-                </div>
-              </li>
-            )}
-          </For>
-        </ul>
-      </Show>
     </Card>
   );
 }
