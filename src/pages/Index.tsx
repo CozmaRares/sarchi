@@ -60,7 +60,7 @@ export default function Index() {
             class="flex flex-col justify-center space-y-4"
           >
             <div class="space-y-3">
-              <p>Add this url as a custom search engine in your browser:</p>
+              <p>Add this url as a custom search engine in your browser</p>
               <CopyInput value="https://sarchi.raru.dev/?q=%s" />
             </div>
 
@@ -73,7 +73,9 @@ export default function Index() {
             <div class="space-y-3">
               <p>
                 Do a search to have the url be automatically picked up by your
-                browser as a recently used search engine:
+                browser as a recently used search engine
+                <span class="text-sm block">
+                  &gt; for when you can't add it as a custom search engine</span>
               </p>
               <form
                 ref={searchFormRef}

@@ -28,11 +28,6 @@ const originalDotts = {
     category: "Search",
   },
   ym: {
-    name: "YouTube Music",
-    url: "https://music.youtube.com/search?q=%s&utm_source=opensearch",
-    category: "Music",
-  },
-  ymm: {
     name: "YouTube Music Liked Music Playlist",
     url: "https://music.youtube.com/playlist?list=LM",
     category: "Music",
@@ -41,21 +36,6 @@ const originalDotts = {
     name: "Google Images",
     url: "https://google.com/search?tbm=isch&q=%s&tbs=imgo:1",
     category: "Search",
-  },
-  t3: {
-    name: "T3 Chat",
-    url: "https://www.t3.chat/new?q=%s",
-    category: "AI",
-  },
-  fas: {
-    name: "Font Awesome",
-    url: "https://fontawesome.com/search?q=%s",
-    category: "Code",
-  },
-  lu: {
-    name: "Lucide",
-    url: "https://lucide.dev/icons/?search=%s",
-    category: "Code",
   },
   npm: {
     name: "NPM",
@@ -89,17 +69,17 @@ const originalDotts = {
     category: "Code",
   },
   tr: {
-    name: "Google Translate (auto to English)",
+    name: "Google Translate (auto to en)",
     url: "https://translate.google.com/?sl=auto&tl=en&text=%s&op=translate",
     category: "Misc",
   },
   ter: {
-    name: "Google Translate (English to Romanian)",
+    name: "Google Translate (en to ro)",
     url: "https://translate.google.com/?sl=en&tl=ro&text=%s&op=translate",
     category: "Misc",
   },
   tre: {
-    name: "Google Translate (Romanian to English)",
+    name: "Google Translate (ro to en)",
     url: "https://translate.google.com/?sl=ro&tl=en&text=%s&op=translate",
     category: "Misc",
   },
@@ -128,6 +108,11 @@ const originalDotts = {
     name: "MangaDex",
     url: "https://mangadex.org/search?q=%s",
     category: "Manga",
+  },
+  form: {
+    name: "Decontare CTP",
+    url: "https://formforyou.utcluj.ro/#",
+    category: "Misc",
   },
 } as const satisfies DottList;
 
