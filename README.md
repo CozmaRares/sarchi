@@ -1,8 +1,8 @@
 # Sărchi
 
 [DuckDuckGo](https://duckduckgo.com/)'s bang redirects are cool. I took
-[Theo](https://x.com/theo)'s client side remake ([und\*uck](https://unduck.link/))
-and made it work with my own bangs.
+[Theo](https://x.com/theo)'s client side remake ([und\*ck](https://unduck.link/))
+and made it work with my own ~~bangs~~ dotts.
 
 ```
 https://sarchi.raru.dev?q=%s

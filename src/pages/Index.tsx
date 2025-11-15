@@ -37,7 +37,7 @@ export default function Index() {
                 href="https://unduck.link/"
                 class="underline hover:text-gray-600"
               >
-                und*uck
+                und*ck
               </a>
               ) and made it work with my own{" "}
               <span class="line-through">bangs</span> dotts.
