@@ -5,7 +5,8 @@ import {
   type Accessor,
   type Setter,
 } from "solid-js";
-import { Trash2, Pencil } from "lucide-solid";
+import Trash2 from "lucide-solid/icons/trash-2";
+import Pencil from "lucide-solid/icons/pencil";
 import Card from "../components/Card";
 import {
   addCustomDott,
@@ -46,8 +47,7 @@ export default function Custom() {
       <div>
         <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
         <p class="mx-auto max-w-2/3 text-center text-lg text-balance text-gray-500">
-          Very useful if you have your own version of the app and want to keep
-          some URLs private (like your company's internal links).
+          Very useful if you want to keep some URLs private
         </p>
       </div>
       <DottForm
@@ -111,9 +111,7 @@ function DottForm({
     let urlError: string | null = null;
 
     if (key.length === 0) keyError = "Required";
-
     if (name.length === 0) nameError = "Required";
-
     if (url.length === 0) urlError = "Required";
     else if (!isUrlValid(url)) urlError = "Invalid URL";
 
@@ -145,14 +143,16 @@ function DottForm({
               Key
             </label>
             <Show when={formError().key}>
-              <div class="text-sm text-red-600">{formError().key}</div>
+              <div class="text-sm text-red-600">({formError().key})</div>
             </Show>
           </div>
           <input
             type="text"
             name="key"
             id="key"
-            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+            class={`w-full rounded-md border bg-gray-100 p-2 ${
+              formError().key === null ? "border-gray-400" : "border-red-600"
+            }`}
             placeholder="e.g., g, yt, gh"
             value={formData().key}
             onChange={e =>
@@ -169,14 +169,16 @@ function DottForm({
               Name
             </label>
             <Show when={formError().name}>
-              <div class="text-sm text-red-600">{formError().name}</div>
+              <div class="text-sm text-red-600">({formError().name})</div>
             </Show>
           </div>
           <input
             type="text"
             name="name"
             id="name"
-            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+            class={`w-full rounded-md border bg-gray-100 p-2 ${
+              formError().name === null ? "border-gray-400" : "border-red-600"
+            }`}
             placeholder="e.g., Google, YouTube, GitHub"
             value={formData().name}
             onChange={e =>
@@ -194,14 +196,16 @@ function DottForm({
             </label>
 
             <Show when={formError().url}>
-              <div class="text-sm text-red-600">{formError().url}</div>
+              <div class="text-sm text-red-600">({formError().url})</div>
             </Show>
           </div>
           <input
             type="text"
             name="url"
             id="url"
-            class="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+            class={`w-full rounded-md border bg-gray-100 p-2 ${
+              formError().url === null ? "border-gray-400" : "border-red-600"
+            }`}
             placeholder="e.g., https://google.com/search?q=%s"
             value={formData().url}
             onChange={e =>
@@ -211,7 +215,8 @@ function DottForm({
           <div class="text-sm text-gray-600">
             <p>
               Include <span class="font-bold text-gray-950">%s</span> in the URL
-              where the search term should be placed.
+              where the search term should be placed. It can be omitted if
+              you don't want the dott to be dynamic.
             </p>
             <p>
               For example: <DottUrl url="https://google.com/search?q=%s" />

@@ -4,11 +4,11 @@ type Category =
   | "AI"
   | "Code"
   | "Misc"
-  | "Manga"
+  | "Manga/Anime"
   | "Custom";
 
 export type DottList = Record<string, DottValue>;
-export type Dott = keyof typeof originalDotts;
+export type Dott = keyof typeof dotts;
 export type DottValue = {
   name: string;
   url: string;
@@ -16,7 +16,7 @@ export type DottValue = {
   keepSlashes?: boolean;
 };
 
-const originalDotts = {
+const dotts = {
   g: {
     name: "Google",
     url: "https://www.google.com/search?q=%s",
@@ -92,31 +92,47 @@ const originalDotts = {
   mal: {
     name: "My Anime List",
     url: "https://myanimelist.net/anime.php?q=%s",
-    category: "Misc",
+    category: "Manga/Anime",
   },
   ctp: {
     name: "CTP Cluj",
     url: "https://ctpcj.ro/index.php/ro/orare-linii/linii-urbane/linia-%s",
-    category: "Misc",
+    category: "Manga/Anime",
   },
   tc: {
     name: "ToonClash",
     url: "https://toonclash.com/?s=%s&post_type=wp-manga",
-    category: "Manga",
+    category: "Manga/Anime",
   },
   mdex: {
     name: "MangaDex",
     url: "https://mangadex.org/search?q=%s",
-    category: "Manga",
+    category: "Manga/Anime",
   },
-  form: {
+  decctp: {
     name: "Decontare CTP",
     url: "https://formforyou.utcluj.ro/#",
     category: "Misc",
   },
+  ss: {
+    name: "Sărchi",
+    url: "https://sarchi.raru.dev/",
+    category: "Misc",
+  },
+  t3: {
+    name: "T3 Chat",
+    url: "https://www.t3.chat/new?q=%s",
+    category: "AI",
+  },
+  eonidx: {
+    name: "E-ON Transmitere Index",
+    url: "https://www.eon.ro/transmitere-index",
+    category: "Misc",
+  },
 } as const satisfies DottList;
 
-export const dotts: Record<Dott, DottValue> = originalDotts;
+const typedDotts: Record<Dott, DottValue> = dotts;
+export { typedDotts as dotts };
 
 export const defaultDott = "g" satisfies Dott;
 

@@ -1,5 +1,6 @@
 import { createSignal, Show } from "solid-js";
-import { Clipboard, ClipboardCheck } from "lucide-solid";
+import Clipboard from "lucide-solid/icons/clipboard";
+import ClipboardCheck from "lucide-solid/icons/clipboard-check";
 
 type Props = {
   value: string;

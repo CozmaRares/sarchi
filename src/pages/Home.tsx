@@ -1,7 +1,8 @@
 import Card from "../components/Card";
 import CopyInput from "../components/CopyInput";
+import OutgoingLink from "../components/OutgoingLink";
 
-export default function Index() {
+export default function Home() {
   let searchInputRef!: HTMLInputElement;
   let searchFormRef!: HTMLFormElement;
 
@@ -19,38 +20,22 @@ export default function Index() {
           <div class="flex flex-col justify-center gap-4 text-center lg:text-left">
             <h1 class="text-5xl font-bold">Sărchi</h1>
             <p class="max-w-xl text-lg text-balance">
-              <a
-                href="https://duckduckgo.com/"
-                class="underline hover:text-gray-600"
-              >
-                DuckDuckGo
-              </a>
-              's bang redirects are cool. I took{" "}
-              <a
-                href="https://x.com/theo"
-                class="underline hover:text-gray-600"
-              >
-                Theo
-              </a>
-              's client side remake (
-              <a
-                href="https://unduck.link/"
-                class="underline hover:text-gray-600"
-              >
-                und*ck
-              </a>
-              ) and made it work with my own{" "}
+              <OutgoingLink href="https://duckduckgo.com/">
+                DuckDuckGo's
+              </OutgoingLink>{" "}
+              bang redirects are cool. I took{" "}
+              <OutgoingLink href="https://x.com/theo">Theo's</OutgoingLink>{" "}
+              client side remake (
+              <OutgoingLink href="https://unduck.link/">und*ck</OutgoingLink>)
+              and made it work with my own{" "}
               <span class="line-through">bangs</span> dotts.
             </p>
             <p class="max-w-xl text-lg text-balance">
               If you want to have your own version of this, I encourage you to
               fork{" "}
-              <a
-                href="https://github.com/CozmaRares/sarchi"
-                class="underline hover:text-gray-600"
-              >
+              <OutgoingLink href="https://github.com/CozmaRares/sarchi">
                 my repo
-              </a>{" "}
+              </OutgoingLink>{" "}
               and deploy it however you like.
             </p>
           </div>
@@ -74,8 +59,9 @@ export default function Index() {
               <p>
                 Do a search to have the url be automatically picked up by your
                 browser as a recently used search engine
-                <span class="text-sm block">
-                  &gt; for when you can't add it as a custom search engine</span>
+                <span class="block text-sm">
+                  &gt; for when you can't add Sărchi as a custom search engine
+                </span>
               </p>
               <form
                 ref={searchFormRef}

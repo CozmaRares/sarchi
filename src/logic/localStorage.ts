@@ -32,9 +32,11 @@ export function deleteCustomDott(key: string): void {
   }
 }
 
-export function importDotts(data: string) {
-  console.log(data);
+export function encodeDotts(data: string) {
+  return btoa(data);
+}
 
+export function importDotts(data: string) {
   const imported = JSON.parse(data);
 
   for (const [key, value] of Object.entries(imported)) {

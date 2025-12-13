@@ -1,5 +1,8 @@
 import currentHash from "../logic/currentHash";
-import { Home, Layers, MoveUpRight, Plus } from "lucide-solid";
+import Home from "lucide-solid/icons/home";
+import Layers from "lucide-solid/icons/layers";
+import MoveUpRight from "lucide-solid/icons/move-up-right";
+import Plus from "lucide-solid/icons/plus";
 
 const NAV_ITEMS = [
   { hash: "", name: "Home", icon: Home },
@@ -24,7 +27,7 @@ export default function Nav() {
                   isActive
                     ? "bg-gray-900 text-white shadow-md"
                     : "hover:bg-gray-100/80 hover:text-gray-900"
-                } `}
+                }`}
               >
                 <Icon class="size-4" />
                 <span class="whitespace-nowrap">{item.name}</span>

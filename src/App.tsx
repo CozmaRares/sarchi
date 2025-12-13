@@ -6,7 +6,7 @@ import { importDotts } from "./logic/localStorage";
 import Nav from "./components/Nav";
 import TailwindIndicator from "./components/TailwindIndicator";
 
-const Index = lazy(() => import("./pages/Index"));
+const Home = lazy(() => import("./pages/Home"));
 const Dotts = lazy(() => import("./pages/Dotts"));
 const Custom = lazy(() => import("./pages/Custom"));
 const Export = lazy(() => import("./pages/Export"));
@@ -35,7 +35,7 @@ export default function App() {
     <Layout>
       <Switch fallback={<RedirectHome />}>
         <Match when={currentHash() === ""}>
-          <Index />
+          <Home />
         </Match>
         <Match when={currentHash() === "#dotts"}>
           <Dotts />
