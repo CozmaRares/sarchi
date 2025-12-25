@@ -5,10 +5,10 @@ import Card from "./Card";
 import DottUrl from "./DottUrl";
 
 type Props = {
-  onAfterItem?: (dott: Dott, value: DottValue) => JSX.Element;
+  endAdornment?: (dott: Dott, value: DottValue) => JSX.Element;
 };
 
-export default function CustomDottList({ onAfterItem }: Props) {
+export default function CustomDottList({ endAdornment }: Props) {
   return (
     <Card class="space-y-4">
       <h2 class="text-2xl font-semibold">Your Custom Dotts</h2>
@@ -19,20 +19,20 @@ export default function CustomDottList({ onAfterItem }: Props) {
         <ul class="space-y-4">
           <For each={Object.entries(customDotts)}>
             {([key, value]) => (
-              <li class="flex flex-row items-center justify-between rounded-lg border border-gray-200 p-2 shadow-sm">
+              <li class="card-secondary flex flex-row items-center justify-between rounded-lg p-2 shadow-sm">
                 <div>
-                  <span class="w-fit rounded-md bg-gray-200 px-2 py-0.5 text-xs whitespace-nowrap">
+                  <span class="bg-card-primary-bg w-fit rounded-md px-2 py-0.5 whitespace-nowrap">
                     .{key}
                   </span>{" "}
-                  {value.name}
-                  <div class="text-sm text-gray-600">
+                  <span class="text-text-accent">{value.name}</span>
+                  <div class="">
                     <DottUrl url={value.url} />
                   </div>
-                  <div class="text-sm text-gray-600">
+                  <div class="">
                     {value.keepSlashes && "Keeps slashes in path"}
                   </div>
                 </div>
-                {onAfterItem && onAfterItem(key as Dott, value)}
+                {endAdornment?.(key as Dott, value)}
               </li>
             )}
           </For>

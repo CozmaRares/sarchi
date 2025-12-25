@@ -1,3 +1,4 @@
+import Search from "lucide-solid/icons/search";
 import Card from "../components/Card";
 import CopyInput from "../components/CopyInput";
 import OutgoingLink from "../components/OutgoingLink";
@@ -50,16 +51,16 @@ export default function Home() {
             </div>
 
             <div class="flex flex-row items-center gap-2">
-              <span class="h-[2px] flex-grow bg-gray-300"></span>
+              <span class="bg-card-primary-text h-[2px] flex-grow"></span>
               OR
-              <span class="h-[2px] flex-grow bg-gray-300"></span>
+              <span class="bg-card-primary-text h-[2px] flex-grow"></span>
             </div>
 
             <div class="space-y-3">
               <p>
                 Do a search to have the url be automatically picked up by your
                 browser as a recently used search engine
-                <span class="block text-sm">
+                <span class="text-text-accent block font-bold italic">
                   &gt; for when you can't add Sărchi as a custom search engine
                 </span>
               </p>
@@ -67,19 +68,16 @@ export default function Home() {
                 ref={searchFormRef}
                 onsubmit={search}
               >
-                <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
+                <div class="border-card-primary-text card-secondary isolate flex h-10 flex-row items-center rounded-md border">
                   <input
                     ref={searchInputRef}
                     type="text"
                     placeholder="cat videos .y"
-                    class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+                    class="placeholder:text-card-secondary-text/80 h-full flex-grow rounded-l-md px-3 py-2 font-mono"
                   />
-                  <button class="flex size-10 items-center justify-center rounded-r-md ring-offset-gray-100 hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none">
-                    <img
-                      src="/search.svg"
-                      alt="Search"
-                      class="size-6"
-                    />
+                  <div class="bg-card-primary-text -z-10 h-full w-[1px]" />
+                  <button class="flex aspect-square h-full items-center justify-center rounded-r-md hover:cursor-pointer">
+                    <Search class="size-6" />
                   </button>
                 </div>
               </form>

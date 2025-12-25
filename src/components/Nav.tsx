@@ -13,9 +13,9 @@ const NAV_ITEMS = [
 
 export default function Nav() {
   return (
-    <div class="fixed right-0 bottom-0 left-0 z-50 border border-black/50 bg-white/90 px-2 py-2 shadow-lg backdrop-blur-md md:right-auto md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:rounded-full">
+    <div class="border-text-accent card fixed right-0 bottom-0 left-0 z-50 border-t md:border px-2 py-2 shadow-lg backdrop-blur-md md:right-auto md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:rounded-full">
       <nav>
-        <div class="flex flex-wrap items-center justify-center md:flex-nowrap">
+        <div class="flex flex-wrap gap-2 items-center justify-center md:flex-nowrap">
           {NAV_ITEMS.map(item => {
             const Icon = item.icon;
             const isActive = currentHash() === item.hash;
@@ -25,8 +25,8 @@ export default function Nav() {
                 href={item.hash.length == 0 ? "#" : item.hash}
                 class={`relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? "bg-gray-900 text-white shadow-md"
-                    : "hover:bg-gray-100/80 hover:text-gray-900"
+                    ? "bg-card-secondary-bg text-card-secondary-text"
+                    : "hover:bg-card-secondary-bg/65 hover:text-card-secondary-text"
                 }`}
               >
                 <Icon class="size-4" />

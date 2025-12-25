@@ -46,7 +46,7 @@ export default function Custom() {
     <div class="w-full max-w-4xl space-y-8">
       <div>
         <h1 class="text-center text-4xl font-bold">Custom Dotts</h1>
-        <p class="mx-auto max-w-2/3 text-center text-lg text-balance text-gray-500">
+        <p class="text-text-accent mx-auto max-w-2/3 text-center text-lg text-balance">
           Very useful if you want to keep some URLs private
         </p>
       </div>
@@ -57,16 +57,16 @@ export default function Custom() {
         setFormError={setFormError}
       />
       <CustomDottList
-        onAfterItem={(key, value) => (
+        endAdornment={(key, value) => (
           <div class="flex gap-2">
             <button
-              class="cursor-pointer rounded-md border border-black p-2 hover:bg-black hover:text-white"
+              class="border-text-text hover:bg-text hover:text-background cursor-pointer rounded-md border p-2"
               onclick={() => editDott(key, value)}
             >
               <Pencil class="size-4" />
             </button>
             <button
-              class="cursor-pointer rounded-md border border-red-600 p-2 text-red-600 accent-red-600 hover:bg-red-600 hover:text-white"
+              class="border-danger-bg text-danger-bg accent-danger-bg hover:bg-danger-bg hover:text-text cursor-pointer rounded-md border p-2"
               onclick={() => deleteCustomDott(key)}
             >
               <Trash2 class="size-4" />
@@ -138,20 +138,22 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="key"
-              class="block text-sm text-gray-700"
+              class="text-text-accent block"
             >
               Key
             </label>
             <Show when={formError().key}>
-              <div class="text-sm text-red-600">({formError().key})</div>
+              <div class="text-danger-bg">({formError().key})</div>
             </Show>
           </div>
           <input
             type="text"
             name="key"
             id="key"
-            class={`w-full rounded-md border bg-gray-100 p-2 ${
-              formError().key === null ? "border-gray-400" : "border-red-600"
+            class={`card-secondary w-full rounded-md border p-2 ${
+              formError().key === null
+                ? "border-card-primary-text"
+                : "border-danger-bg"
             }`}
             placeholder="e.g., g, yt, gh"
             value={formData().key}
@@ -164,20 +166,22 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="name"
-              class="block text-sm text-gray-700"
+              class="text-text-accent block"
             >
               Name
             </label>
             <Show when={formError().name}>
-              <div class="text-sm text-red-600">({formError().name})</div>
+              <div class="text-danger-bg">({formError().name})</div>
             </Show>
           </div>
           <input
             type="text"
             name="name"
             id="name"
-            class={`w-full rounded-md border bg-gray-100 p-2 ${
-              formError().name === null ? "border-gray-400" : "border-red-600"
+            class={`card-secondary w-full rounded-md border p-2 ${
+              formError().name === null
+                ? "border-card-primary-text"
+                : "border-danger-bg"
             }`}
             placeholder="e.g., Google, YouTube, GitHub"
             value={formData().name}
@@ -190,21 +194,23 @@ function DottForm({
           <div class="flex flex-row items-center gap-2">
             <label
               for="url"
-              class="block text-sm text-gray-700"
+              class="text-text-accent block"
             >
               URL
             </label>
 
             <Show when={formError().url}>
-              <div class="text-sm text-red-600">({formError().url})</div>
+              <div class="text-danger-bg">({formError().url})</div>
             </Show>
           </div>
           <input
             type="text"
             name="url"
             id="url"
-            class={`w-full rounded-md border bg-gray-100 p-2 ${
-              formError().url === null ? "border-gray-400" : "border-red-600"
+            class={`card-secondary w-full rounded-md border p-2 ${
+              formError().url === null
+                ? "border-card-primary-text"
+                : "border-danger-bg"
             }`}
             placeholder="e.g., https://google.com/search?q=%s"
             value={formData().url}
@@ -212,10 +218,10 @@ function DottForm({
               setFormData(prev => ({ ...prev, url: e.target.value }))
             }
           />
-          <div class="text-sm text-gray-600">
+          <div class="">
             <p>
-              Include <span class="font-bold text-gray-950">%s</span> in the URL
-              where the search term should be placed. It can be omitted if
+              Include <span class="text-text-accent font-bold">%s</span> in the
+              URL where the search term should be placed. It can be omitted if
               you don't want the dott to be dynamic.
             </p>
             <p>
@@ -228,7 +234,7 @@ function DottForm({
             type="checkbox"
             name="keepSlashes"
             id="keepSlashes"
-            class="size-4 rounded-md border border-gray-400 bg-gray-100"
+            class="border-card-primary-text bg-card-secondary-bg size-4 rounded-sm border"
             checked={formData().keepSlashes}
             onChange={e =>
               setFormData(prev => ({ ...prev, keepSlashes: e.target.checked }))
@@ -243,13 +249,13 @@ function DottForm({
         </div>
         <button
           type="submit"
-          class="w-full cursor-pointer rounded-md bg-gray-900 p-2 text-white hover:bg-gray-800"
+          class="hover:bg-card-secondary-bg text-card-secondary-text bg-background/80 w-full cursor-pointer rounded-md p-2 transition-colors"
         >
           {isAlreadyDefined() ? "Update" : "Add"} Dott
         </button>
         <button
           type="button"
-          class="w-full cursor-pointer rounded-md border border-gray-900 p-2 hover:bg-gray-900 hover:text-white"
+          class="hover:text-danger-text hover:bg-danger-bg bg-danger-bg/80 w-full cursor-pointer rounded-md p-2 transition-colors"
           onclick={resetForm}
         >
           Reset Form

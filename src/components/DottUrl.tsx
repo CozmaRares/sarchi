@@ -12,7 +12,7 @@ export default function DottUrl({ url }: Props) {
   return (
     <>
       {url1}
-      <span class="font-bold text-gray-950">%s</span>
+      <span class="text-text-accent font-bold">%s</span>
       {url2}
     </>
   );

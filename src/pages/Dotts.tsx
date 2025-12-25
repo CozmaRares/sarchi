@@ -63,9 +63,9 @@ function DottList({ category, dotts }: DottListProps) {
   return (
     <>
       <div class="flex flex-row items-center gap-2">
-        <span class="h-[2px] flex-grow bg-gray-300"></span>
+        <span class="bg-text h-[2px] flex-grow"></span>
         <h2 class="text-2xl font-semibold">{category}</h2>
-        <span class="h-[2px] flex-grow bg-gray-300"></span>
+        <span class="bg-text h-[2px] flex-grow"></span>
       </div>
       <ul class="space-y-4">
         <For each={dotts}>{dott => <DottItem {...dott} />}</For>
@@ -74,30 +74,25 @@ function DottList({ category, dotts }: DottListProps) {
   );
 }
 
-function DottItem({
-  dottKey: d,
-  name: n,
-  url: u,
-  keepSlashes: k,
-}: CategorizedDott) {
+function DottItem({ dottKey, name, url, keepSlashes }: CategorizedDott) {
   return (
     <li>
       <Card>
         <div class="flex flex-row items-end gap-2">
-          <span class="font-mono text-lg font-bold">.{d}</span>
-          {d === defaultDott && (
-            <span class="text-sm text-gray-600">(default)</span>
+          <span class="font-mono text-lg font-bold">.{dottKey}</span>
+          {dottKey === defaultDott && (
+            <span class="text-text-accent text-sm">(default)</span>
           )}
         </div>
-        <div class="text-gray-600">
-          <div>Name: {n}</div>
+        <div>
+          <div>Name: {name}</div>
           <div style="word-break: break-all;">
             URL:{" "}
             <span class="font-mono">
-              <DottUrl url={u} />
+              <DottUrl url={url} />
             </span>
           </div>
-          {k && <div>Keeps slashes in path</div>}
+          {keepSlashes && <div>Keeps slashes in path</div>}
         </div>
       </Card>
     </li>

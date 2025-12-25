@@ -16,15 +16,16 @@ export default function CopyInput({ value }: Props) {
   };
 
   return (
-    <div class="flex flex-row items-center divide-x divide-gray-400 rounded-md border border-gray-400 bg-gray-100">
+    <div class="border-card-primary-text h-10 card-secondary isolate flex flex-row items-center rounded-md border">
       <input
         type="text"
         value={value}
         readOnly
-        class="h-10 flex-grow rounded-l-md px-3 py-2 font-mono text-sm ring-offset-gray-100 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+        class="h-full flex-grow rounded-l-md px-3 py-2 font-mono"
       />
+      <div class="w-[1px] h-full bg-card-primary-text -z-10" />
       <button
-        class="flex size-10 items-center justify-center rounded-r-md ring-offset-gray-100 hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+        class="flex h-full aspect-square items-center justify-center rounded-r-md hover:cursor-pointer"
         onclick={copy}
       >
         <Show

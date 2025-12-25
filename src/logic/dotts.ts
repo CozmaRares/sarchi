@@ -121,7 +121,7 @@ const dotts = {
   },
   t3: {
     name: "T3 Chat",
-    url: "https://www.t3.chat/new?q=%s",
+    url: "https://t3.chat/new?model=gemini-3-flash&q=%s",
     category: "AI",
   },
   eonidx: {
