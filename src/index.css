@@ -42,3 +42,7 @@
     @apply bg-card-secondary-bg text-card-secondary-text;
   }
 }
+
+html, body, #app {
+  max-width: 100%;
+}
